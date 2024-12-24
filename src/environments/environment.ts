@@ -4,13 +4,12 @@
 export const env = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyB-pS4BAB-ih74O4LzJuwrzKbgI1eHprvo",
-  authDomain: "book-4740e.firebaseapp.com",
-  projectId: "book-4740e",
-  storageBucket: "book-4740e.firebasestorage.app",
-  messagingSenderId: "1047517811034",
-  appId: "1:1047517811034:web:c411e8d957f03ea694a363",
-  measurementId: "G-WN7FC3TH7N"
+    apiKey: "AIzaSyA5K6dStYuQ9YXNrQYtzhRCa6BmQSwkH40",
+  authDomain: "bookmanager-23beb.firebaseapp.com",
+  projectId: "bookmanager-23beb",
+  storageBucket: "bookmanager-23beb.firebasestorage.app",
+  messagingSenderId: "58090746648",
+  appId: "1:58090746648:web:24fea3a95007f00742246d"
   }
   };
 

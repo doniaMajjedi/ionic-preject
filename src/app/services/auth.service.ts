@@ -9,8 +9,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class AuthService {
 
   user = new BehaviorSubject<any>(null);
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false); // Track authentication state
-  isAuthenticated$ = this.isAuthenticatedSubject.asObservable(); // Observable for other components to subscribe to
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false); // bch ytaba3 authentication state
+  isAuthenticated$ = this.isAuthenticatedSubject.asObservable(); // Observable ll components lo5rin
 
   constructor(private afAuth: AngularFireAuth, private router: Router) {
     this.afAuth.authState.subscribe(user => {

@@ -14,11 +14,11 @@ export class FavorisService {
   addBookToFavorites(book: any) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        const userId = user.uid; // Get the current user's UID
+        const userId = user.uid; // njibou current user id
         const bookRef = this.firestore
           .collection('users')
-          .doc(userId) // Access the current user document
-          .collection('favorites') // Access the favorites subcollection
+          .doc(userId) // bch najmou naccediw ll  document t3 current user
+          .collection('favorites') // naccediw ll favorites collection
           .doc(book.id); // The document ID will be the book ID
 
         // Save the book details to the favorites subcollection
