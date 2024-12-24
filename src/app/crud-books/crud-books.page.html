@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button> <!-- Back button -->
+    </ion-buttons>
+    <ion-title>📚 My Book Library</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <!-- Book List -->
+  <ion-list lines="full" class="book-list">
+    <ion-item *ngFor="let book of books" button detail="true">
+      <ion-avatar slot="start">
+        <img src="assets/icon/book-icon.png" alt="Book Icon" />
+      </ion-avatar>
+      <ion-label>
+        <h2 class="book-title">{{ book.title }}</h2>
+        <p><strong>Authors:</strong> {{ book.authors }}</p>
+        <p>{{ book.description }}</p>
+        <p><strong>Year:</strong> {{ book.year }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="editBook(book)" color="tertiary" fill="solid">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="deleteBook(book.id)" color="danger" fill="solid">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <!-- Add New Book Form -->
+  <ion-card class="form-card">
+    <ion-card-header>
+      <ion-card-title>Add a New Book</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input [(ngModel)]="newBook.title" placeholder="Title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="newBook.authors" placeholder="Authors"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="newBook.description" placeholder="Description"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="newBook.year" placeholder="Year" type="number"></ion-input>
+      </ion-item>
+      <div class="form-actions">
+        <ion-button expand="block" (click)="addBook()" color="success">
+          <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+          Add Book
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Edit Book Form -->
+  <ion-modal *ngIf="selectedBook" [isOpen]="selectedBook !== null" cssClass="edit-modal">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>Edit Book</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="selectedBook = null">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <div>{{ selectedBook | json }}</div> 
+      <ion-list>
+        <ion-item>
+          <ion-input [(ngModel)]="selectedBook.title" placeholder="Title"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input [(ngModel)]="selectedBook.authors" placeholder="Authors"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input [(ngModel)]="selectedBook.description" placeholder="Description"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input [(ngModel)]="selectedBook.year" placeholder="Year" type="number"></ion-input>
+        </ion-item>
+      </ion-list>
+      <div class="form-actions">
+        <ion-button expand="block" (click)="updateBook(selectedBook.id)" color="primary">
+          <ion-icon slot="start" name="save-outline"></ion-icon>
+          Save Changes
+        </ion-button>
+      </div>
+    </ion-content>
+  </ion-modal>
+  
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button> <!-- Back button -->
+    </ion-buttons>
+    <!-- Use a fallback in case bookDetails.title is not yet available -->
+    <ion-title>{{ bookDetails.title || 'Back' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Display loading message if data is being fetched -->
+  <div *ngIf="isLoading" class="loading">
+    <ion-spinner name="bubbles"></ion-spinner>
+    <p>Loading book details...</p>
+  </div>
+
+  <!-- Display error message if there was an issue fetching data -->
+  <div *ngIf="errorMessage" class="error-message">
+    <ion-icon name="warning" color="danger"></ion-icon>
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <!-- Book details section, only shown when the bookDetails object is populated -->
+  <div *ngIf="!isLoading && bookDetails.title" class="book-details">
+    <ion-card class="book-card">
+      <img [src]="bookDetails.image" alt="{{ bookDetails.title }}" class="book-image">
+
+      <ion-card-header>
+        <ion-card-title>{{ bookDetails.title }}</ion-card-title>
+        <ion-card-subtitle>{{ bookDetails.authors }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="description">{{ bookDetails.description }}</p>
+        <div class="book-info">
+          <p><strong>Publisher:</strong> {{ bookDetails.publisher }}</p>
+          <p><strong>Year:</strong> {{ bookDetails.year }}</p>
+          <p><strong>Pages:</strong> {{ bookDetails.pages }}</p>
+        </div>
+
+        <!-- Favorite Button -->
+        <ion-button (click)="toggleFavorite()" color="danger" fill="outline" expand="full">
+          <ion-icon [name]="isFavoriteStatus ? 'heart' : 'heart-outline'" slot="start"></ion-icon>
+          {{ isFavoriteStatus ? 'Remove from Favorites' : 'Add to Favorites' }}
+        </ion-button>
+
+        <div class="book-links">
+          <ion-button href="{{ bookDetails.url }}" target="_blank" color="secondary" shape="round" size="default" expand="full">
+            View on Website
+          </ion-button>
+          <ion-button href="{{ bookDetails.download }}" target="_blank" color="secondary" shape="round" size="default" expand="full">
+            Download Book
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favorites</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="favoriteBooks.length === 0" class="no-favorites">
+    <p>No favorite books added yet.</p>
+  </div>
+
+  <ion-list *ngIf="favoriteBooks.length > 0">
+    <ion-item *ngFor="let book of favoriteBooks">
+      <ion-avatar slot="start">
+        <img [src]="book.image" alt="{{ book.title }}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ book.title }}</h2>
+        <p>{{ book.authors }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
